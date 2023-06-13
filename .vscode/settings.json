@@ -1,8 +1,0 @@
-{
-    "java.project.referencedLibraries": [
-        "lib/**/*.jar",
-        "src/libs/c3p0-0.9.5.5.jar",
-        "src/libs/mchange-commons-java-0.2.20.jar",
-        "src/libs/mysql-connector-java-8.0.20.jar"
-    ]
-}
