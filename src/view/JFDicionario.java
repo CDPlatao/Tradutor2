@@ -1,6 +1,8 @@
 package view;
 
 import java.awt.Color;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.ImageIcon;
@@ -12,6 +14,8 @@ import services.comboServicos;
 import services.factoryServicos;
 import services.idiomaServicos;
 import services.traducaoServicos;
+import static view.modoVisao.isDarkModeOn;
+import static view.modoVisao.verVisao;
 
 public class JFDicionario extends javax.swing.JFrame {
 
@@ -19,8 +23,16 @@ public class JFDicionario extends javax.swing.JFrame {
         setTitle("Dicionário");
         initComponents();
         addRowToTable();
-        CarregaCombo();       
+        CarregaCombo();
+        verificar();
         jbEditar.setEnabled(false);
+        jbExcluir.setEnabled(false);
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                close();
+            }
+        });
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -89,11 +101,11 @@ public class JFDicionario extends javax.swing.JFrame {
         jspPainel.setViewportView(jtDicionario);
         if (jtDicionario.getColumnModel().getColumnCount() > 0) {
             jtDicionario.getColumnModel().getColumn(0).setResizable(false);
-            jtDicionario.getColumnModel().getColumn(0).setPreferredWidth(40);
+            jtDicionario.getColumnModel().getColumn(0).setPreferredWidth(10);
             jtDicionario.getColumnModel().getColumn(2).setResizable(false);
-            jtDicionario.getColumnModel().getColumn(2).setPreferredWidth(50);
+            jtDicionario.getColumnModel().getColumn(2).setPreferredWidth(30);
             jtDicionario.getColumnModel().getColumn(4).setResizable(false);
-            jtDicionario.getColumnModel().getColumn(4).setPreferredWidth(50);
+            jtDicionario.getColumnModel().getColumn(4).setPreferredWidth(30);
         }
 
         ENTRADA.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
@@ -161,9 +173,9 @@ public class JFDicionario extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jFundoLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(jspPainel, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
                 .addGroup(jFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jFundoLayout.createSequentialGroup()
-                        .addGap(5, 5, 5)
                         .addComponent(jbFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -171,21 +183,16 @@ public class JFDicionario extends javax.swing.JFrame {
                         .addComponent(jbEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jbSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtEntrada, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jtSaida, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jFundoLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(SAIDA)
                             .addComponent(ENTRADA))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jcbEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jcbSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jFundoLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtEntrada))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jFundoLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtSaida)))
+                            .addComponent(jcbSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(25, 25, 25))
             .addGroup(jFundoLayout.createSequentialGroup()
                 .addGap(276, 276, 276)
@@ -238,13 +245,15 @@ public class JFDicionario extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    private boolean modo;
+
     private void jtDicionarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtDicionarioMouseClicked
         jbEditar.setEnabled(true);
     }//GEN-LAST:event_jtDicionarioMouseClicked
 
     private void jbFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbFecharActionPerformed
         if (jbFechar.getText().equals("Fechar")) {
+            JFMenu janela = new JFMenu();
+            janela.setVisible(true);
             this.dispose();
         } else {
             jbSalvar.setText("Salvar");
@@ -277,6 +286,7 @@ public class JFDicionario extends javax.swing.JFrame {
     private void jbEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditarActionPerformed
         jbSalvar.setText("Confirmar");
         jbFechar.setText("Cancelar");
+        jbExcluir.setEnabled(true);
 
         int linha;
         linha = jtDicionario.getSelectedRow();
@@ -296,22 +306,14 @@ public class JFDicionario extends javax.swing.JFrame {
     }//GEN-LAST:event_jbSalvarActionPerformed
 
     private void jpEscuro2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpEscuro2MouseClicked
-        if (!modo) {
-            jFundo.setBackground(Color.decode("#283482"));
-            jpEscuro2.setBackground(Color.decode("#283482"));
-            DICIONARIO.setForeground(Color.white);
-            ENTRADA.setForeground(Color.white);
-            SAIDA.setForeground(Color.white);
-            ONOFF2.setIcon(new ImageIcon(JFMenu.class.getResource("/img/on.png")));
+        modoVisao visao = new modoVisao();
+        boolean darkModeAtivo = visao.isDarkModeOn();
+        if (darkModeAtivo) {
+            modoClaro();
         } else {
-            jFundo.setBackground(Color.white);
-            jpEscuro2.setBackground(Color.white);
-            DICIONARIO.setForeground(Color.black);
-            ENTRADA.setForeground(Color.black);
-            SAIDA.setForeground(Color.black);
-            ONOFF2.setIcon(new ImageIcon(JFMenu.class.getResource("/img/off.png")));
+            modoEscuro();
         }
-        modo = !modo;
+        modoVisao.toggleVisao();
     }//GEN-LAST:event_jpEscuro2MouseClicked
 
     public void addRowToTable() {
@@ -405,6 +407,38 @@ public class JFDicionario extends javax.swing.JFrame {
         jcbEntrada.setSelectedItem(origem.getIdioma());
         jcbSaida.setSelectedItem(destino.getIdioma());
         jtSaida.requestFocus();
+    }
+
+    public void verificar() {
+        if (isDarkModeOn()) {
+            modoEscuro();
+        } else {
+            modoClaro();
+        }
+    }
+
+    public void modoClaro() {
+        jFundo.setBackground(Color.white);
+        jpEscuro2.setBackground(Color.white);
+        DICIONARIO.setForeground(Color.black);
+        ENTRADA.setForeground(Color.black);
+        SAIDA.setForeground(Color.black);
+        ONOFF2.setIcon(new ImageIcon(JFMenu.class.getResource("/img/off.png")));
+    }
+
+    public void modoEscuro() {
+        jFundo.setBackground(Color.decode("#283482"));
+        jpEscuro2.setBackground(Color.decode("#283482"));
+        DICIONARIO.setForeground(Color.white);
+        ENTRADA.setForeground(Color.white);
+        SAIDA.setForeground(Color.white);
+        ONOFF2.setIcon(new ImageIcon(JFMenu.class.getResource("/img/on.png")));
+    }
+
+    public void close() {
+        JFMenu janela = new JFMenu();
+        janela.setVisible(true);
+        this.dispose();
     }
 
     public static void main(String args[]) {

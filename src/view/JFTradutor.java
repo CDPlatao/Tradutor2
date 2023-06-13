@@ -1,6 +1,8 @@
 package view;
 
 import java.awt.Color;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import model.idioma;
 import services.comboServicos;
 import services.factoryServicos;
@@ -10,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import static view.modoVisao.isDarkModeOn;
 
 public class JFTradutor extends javax.swing.JFrame {
 
@@ -17,7 +20,13 @@ public class JFTradutor extends javax.swing.JFrame {
         setTitle("Tradutor");
         initComponents();
         CarregaCombo();
-
+        verificar();
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                close();
+            }
+        });
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -167,7 +176,6 @@ public class JFTradutor extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    private boolean modo;
 
     private void jbTraduzirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbTraduzirActionPerformed
         traducaoServicos tServicos = factoryServicos.getTraducaoServicos();
@@ -191,6 +199,7 @@ public class JFTradutor extends javax.swing.JFrame {
                     JFDicionario janelaTradutor = new JFDicionario();
                     janelaTradutor.setVisible(true);
                     janelaTradutor.recebas(palavra, origem, destino);
+                    this.dispose();
 
                 } else {
                     JOptionPane.showMessageDialog(this, "Opção cancelada!.");
@@ -202,26 +211,20 @@ public class JFTradutor extends javax.swing.JFrame {
     }//GEN-LAST:event_jbTraduzirActionPerformed
 
     private void jbFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbFecharActionPerformed
+        JFMenu janela = new JFMenu();
+        janela.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jbFecharActionPerformed
 
     private void jpEscuroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpEscuroMouseClicked
-        if (!modo) {
-            jFundo.setBackground(Color.decode("#283482"));
-            jpEscuro.setBackground(Color.decode("#283482"));
-            TRADUTOR.setForeground(Color.white);
-            ENTRADA.setForeground(Color.white);
-            SAIDA.setForeground(Color.white);
-            ONOFF.setIcon(new ImageIcon(JFMenu.class.getResource("/img/on.png")));
+        modoVisao visao = new modoVisao();
+        boolean darkModeAtivo = visao.isDarkModeOn();
+        if (darkModeAtivo) {
+            modoClaro();
         } else {
-            jFundo.setBackground(Color.white);
-            jpEscuro.setBackground(Color.white);
-            TRADUTOR.setForeground(Color.black);
-            ENTRADA.setForeground(Color.black);
-            SAIDA.setForeground(Color.black);
-            ONOFF.setIcon(new ImageIcon(JFMenu.class.getResource("/img/off.png")));
+            modoEscuro();
         }
-        modo = !modo;
+        modoVisao.toggleVisao();
     }//GEN-LAST:event_jpEscuroMouseClicked
 
     public void CarregaCombo() {
@@ -239,6 +242,38 @@ public class JFTradutor extends javax.swing.JFrame {
         } catch (SQLException ex) {
             System.out.println("Erro ao carregar combobox!\n" + ex.getMessage());
         }
+    }
+
+    public void verificar() {
+        if (isDarkModeOn()) {
+            modoEscuro();
+        } else {
+            modoClaro();
+        }
+    }
+
+    public void modoClaro() {
+        jFundo.setBackground(Color.white);
+        jpEscuro.setBackground(Color.white);
+        TRADUTOR.setForeground(Color.black);
+        ENTRADA.setForeground(Color.black);
+        SAIDA.setForeground(Color.black);
+        ONOFF.setIcon(new ImageIcon(JFMenu.class.getResource("/img/off.png")));
+    }
+
+    public void modoEscuro() {
+        jFundo.setBackground(Color.decode("#283482"));
+        jpEscuro.setBackground(Color.decode("#283482"));
+        TRADUTOR.setForeground(Color.white);
+        ENTRADA.setForeground(Color.white);
+        SAIDA.setForeground(Color.white);
+        ONOFF.setIcon(new ImageIcon(JFMenu.class.getResource("/img/on.png")));
+    }
+
+    public void close() {
+        JFMenu janela = new JFMenu();
+        janela.setVisible(true);
+        this.dispose();
     }
 
     public static void main(String args[]) {

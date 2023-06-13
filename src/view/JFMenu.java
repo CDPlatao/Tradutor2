@@ -4,12 +4,16 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import view.modoVisao;
+import static view.modoVisao.isDarkModeOn;
+import static view.modoVisao.verVisao;
 
 public class JFMenu extends javax.swing.JFrame {
 
     public JFMenu() {
         setTitle("Menu Tradutor");
         initComponents();
+        modoClaro();
+        verificar();
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -32,7 +36,6 @@ public class JFMenu extends javax.swing.JFrame {
         jlCLibra = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(385, 586));
         setMinimumSize(new java.awt.Dimension(385, 586));
         setResizable(false);
 
@@ -64,7 +67,7 @@ public class JFMenu extends javax.swing.JFrame {
         TRADUTOR.setText("TRADUTOR");
 
         jpTradutor.setBackground(new java.awt.Color(204, 204, 204));
-        jpTradutor.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, java.awt.Color.lightGray, null, java.awt.Color.darkGray));
+        jpTradutor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jpTradutor.setForeground(new java.awt.Color(255, 255, 255));
         jpTradutor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jpTradutor.setPreferredSize(new java.awt.Dimension(152, 77));
@@ -88,23 +91,23 @@ public class JFMenu extends javax.swing.JFrame {
         jpTradutorLayout.setHorizontalGroup(
             jpTradutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpTradutorLayout.createSequentialGroup()
-                .addContainerGap(32, Short.MAX_VALUE)
+                .addContainerGap(29, Short.MAX_VALUE)
                 .addComponent(jlTradutor)
-                .addGap(27, 27, 27))
+                .addGap(32, 32, 32))
         );
         jpTradutorLayout.setVerticalGroup(
             jpTradutorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpTradutorLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(jlTradutor)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         CADASTRO.setFont(new java.awt.Font("Arial", 1, 27)); // NOI18N
         CADASTRO.setText("CADASTRAR");
 
         jpDicionario.setBackground(new java.awt.Color(204, 204, 204));
-        jpDicionario.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, java.awt.Color.lightGray, null, java.awt.Color.darkGray));
+        jpDicionario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jpDicionario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jpDicionario.setPreferredSize(new java.awt.Dimension(152, 77));
         jpDicionario.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -127,20 +130,20 @@ public class JFMenu extends javax.swing.JFrame {
         jpDicionarioLayout.setHorizontalGroup(
             jpDicionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpDicionarioLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(23, 23, 23)
                 .addComponent(jlDicionario)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         jpDicionarioLayout.setVerticalGroup(
             jpDicionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpDicionarioLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jlDicionario, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         jpIdioma.setBackground(new java.awt.Color(204, 204, 204));
-        jpIdioma.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, java.awt.Color.white, null, java.awt.Color.darkGray));
+        jpIdioma.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jpIdioma.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jpIdioma.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -162,14 +165,14 @@ public class JFMenu extends javax.swing.JFrame {
         jpIdiomaLayout.setHorizontalGroup(
             jpIdiomaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpIdiomaLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addGap(42, 42, 42)
                 .addComponent(jlIdioma)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpIdiomaLayout.setVerticalGroup(
             jpIdiomaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpIdiomaLayout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jlIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
         );
@@ -178,7 +181,7 @@ public class JFMenu extends javax.swing.JFrame {
         LIBRAS.setText("LIBRAS");
 
         jpTLibra.setBackground(new java.awt.Color(204, 204, 204));
-        jpTLibra.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, java.awt.Color.lightGray, null, java.awt.Color.darkGray));
+        jpTLibra.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jpTLibra.setForeground(new java.awt.Color(255, 255, 255));
         jpTLibra.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jpTLibra.setPreferredSize(new java.awt.Dimension(152, 77));
@@ -204,18 +207,18 @@ public class JFMenu extends javax.swing.JFrame {
             .addGroup(jpTLibraLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(jlTLibra)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         jpTLibraLayout.setVerticalGroup(
             jpTLibraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpTLibraLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(jlTLibra)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         jpCLibra.setBackground(new java.awt.Color(204, 204, 204));
-        jpCLibra.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, java.awt.Color.lightGray, null, java.awt.Color.darkGray));
+        jpCLibra.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jpCLibra.setForeground(new java.awt.Color(255, 255, 255));
         jpCLibra.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jpCLibra.setPreferredSize(new java.awt.Dimension(152, 77));
@@ -241,14 +244,14 @@ public class JFMenu extends javax.swing.JFrame {
             .addGroup(jpCLibraLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jlCLibra)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         jpCLibraLayout.setVerticalGroup(
             jpCLibraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpCLibraLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(jlCLibra)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jFundoLayout = new javax.swing.GroupLayout(jFundo);
@@ -260,28 +263,27 @@ public class JFMenu extends javax.swing.JFrame {
                 .addComponent(jpEscuro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jFundoLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(jFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jFundoLayout.createSequentialGroup()
-                            .addComponent(jpIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jpIdioma, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGap(18, 18, 18)
                             .addComponent(jpDicionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jFundoLayout.createSequentialGroup()
                             .addGap(78, 78, 78)
                             .addComponent(CADASTRO)))
-                    .addGroup(jFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jFundoLayout.createSequentialGroup()
-                            .addComponent(jpTLibra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jpCLibra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jFundoLayout.createSequentialGroup()
-                            .addGap(113, 113, 113)
-                            .addComponent(LIBRAS))
-                        .addGroup(jFundoLayout.createSequentialGroup()
-                            .addGap(78, 78, 78)
-                            .addGroup(jFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(TRADUTOR)
-                                .addComponent(jpTradutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(jFundoLayout.createSequentialGroup()
+                        .addComponent(jpTLibra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jpCLibra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jFundoLayout.createSequentialGroup()
+                        .addGap(113, 113, 113)
+                        .addComponent(LIBRAS))
+                    .addGroup(jFundoLayout.createSequentialGroup()
+                        .addGap(78, 78, 78)
+                        .addGroup(jFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(TRADUTOR)
+                            .addComponent(jpTradutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
         jFundoLayout.setVerticalGroup(
@@ -295,9 +297,9 @@ public class JFMenu extends javax.swing.JFrame {
                 .addGap(61, 61, 61)
                 .addComponent(CADASTRO)
                 .addGap(20, 20, 20)
-                .addGroup(jFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jpDicionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jpIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jpIdioma, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jpDicionario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                 .addComponent(LIBRAS)
                 .addGap(20, 20, 20)
@@ -336,11 +338,13 @@ public class JFMenu extends javax.swing.JFrame {
     private void jpDicionarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpDicionarioMouseClicked
         JFDicionario janelaTradutor = new JFDicionario();
         janelaTradutor.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jpDicionarioMouseClicked
 
     private void jpTradutorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpTradutorMouseClicked
         JFTradutor janelaTradutor = new JFTradutor();
         janelaTradutor.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jpTradutorMouseClicked
 
     private void jpTradutorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpTradutorMouseEntered
@@ -356,6 +360,7 @@ public class JFMenu extends javax.swing.JFrame {
     private void jpIdiomaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpIdiomaMouseClicked
         JFIdiomas janelaIdioma = new JFIdiomas();
         janelaIdioma.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jpIdiomaMouseClicked
 
     private void jpIdiomaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpIdiomaMouseEntered
@@ -371,6 +376,7 @@ public class JFMenu extends javax.swing.JFrame {
     private void jpTLibraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpTLibraMouseClicked
         JFLibra janelaTradutor = new JFLibra();
         janelaTradutor.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jpTLibraMouseClicked
 
     private void jpTLibraMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpTLibraMouseEntered
@@ -386,6 +392,7 @@ public class JFMenu extends javax.swing.JFrame {
     private void jpCLibraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpCLibraMouseClicked
         JFPortugues janelaTradutor = new JFPortugues();
         janelaTradutor.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jpCLibraMouseClicked
 
     private void jpCLibraMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpCLibraMouseEntered
@@ -399,25 +406,41 @@ public class JFMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jpCLibraMouseExited
 
     private void jpEscuroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpEscuroMouseClicked
-        boolean modoAtivado = modoVisao.isDarkModeOn();
-
-        if (!modoAtivado) {
-            jFundo.setBackground(Color.decode("#283482"));
-            jpEscuro.setBackground(Color.decode("#283482"));
-            LIBRAS.setForeground(Color.white);
-            TRADUTOR.setForeground(Color.white);
-            CADASTRO.setForeground(Color.white);
-            ONOFF.setIcon(new ImageIcon(JFMenu.class.getResource("/img/on.png")));
+        modoVisao visao = new modoVisao();
+        boolean darkModeAtivo = visao.isDarkModeOn();
+        if (darkModeAtivo) {
+            modoClaro();
         } else {
-            jFundo.setBackground(Color.white);
-            jpEscuro.setBackground(Color.white);
-            LIBRAS.setForeground(Color.black);
-            TRADUTOR.setForeground(Color.black);
-            CADASTRO.setForeground(Color.black);
-            ONOFF.setIcon(new ImageIcon(JFMenu.class.getResource("/img/off.png")));
+            modoEscuro();
         }
         modoVisao.toggleVisao();
     }//GEN-LAST:event_jpEscuroMouseClicked
+
+    public void verificar() {
+        if (isDarkModeOn()) {
+            modoEscuro();
+        } else {
+            modoClaro();
+        }
+    }
+
+    public void modoClaro() {
+        jFundo.setBackground(Color.white);
+        jpEscuro.setBackground(Color.white);
+        LIBRAS.setForeground(Color.black);
+        TRADUTOR.setForeground(Color.black);
+        CADASTRO.setForeground(Color.black);
+        ONOFF.setIcon(new ImageIcon(JFMenu.class.getResource("/img/off.png")));
+    }
+
+    public void modoEscuro() {
+        jFundo.setBackground(Color.decode("#283482"));
+        jpEscuro.setBackground(Color.decode("#283482"));
+        LIBRAS.setForeground(Color.white);
+        TRADUTOR.setForeground(Color.white);
+        CADASTRO.setForeground(Color.white);
+        ONOFF.setIcon(new ImageIcon(JFMenu.class.getResource("/img/on.png")));
+    }
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {

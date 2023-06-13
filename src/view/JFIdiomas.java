@@ -1,6 +1,8 @@
 package view;
 
 import java.awt.Color;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -8,6 +10,8 @@ import model.idioma;
 import services.factoryServicos;
 import services.idiomaServicos;
 import view.modoVisao;
+import static view.modoVisao.isDarkModeOn;
+import static view.modoVisao.verVisao;
 
 public class JFIdiomas extends javax.swing.JFrame {
 
@@ -15,6 +19,13 @@ public class JFIdiomas extends javax.swing.JFrame {
         setTitle("Idiomas");
         initComponents();
         addRowToTable();
+        verificar();
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                close();
+            }
+        });
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -162,19 +173,19 @@ public class JFIdiomas extends javax.swing.JFrame {
                 .addComponent(jspPainel, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jFundoLayout.createSequentialGroup()
-                        .addGroup(jFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jbFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jbEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(62, 62, 62)
-                        .addGroup(jFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jbExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jbSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jtEntrada)
                     .addGroup(jFundoLayout.createSequentialGroup()
                         .addGap(60, 60, 60)
-                        .addComponent(ENTRADA)))
-                .addGap(25, 285, Short.MAX_VALUE))
+                        .addComponent(ENTRADA))
+                    .addGroup(jFundoLayout.createSequentialGroup()
+                        .addComponent(jbExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                        .addComponent(jbSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jFundoLayout.createSequentialGroup()
+                        .addComponent(jbFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jbEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jFundoLayout.setVerticalGroup(
             jFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,27 +208,25 @@ public class JFIdiomas extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jtEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(jFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jFundoLayout.createSequentialGroup()
-                                .addComponent(jbFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jbEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jFundoLayout.createSequentialGroup()
-                                .addComponent(jbExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jbSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jbExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jbSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jbEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jbFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(25, 25, 25))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jFundo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jFundo, javax.swing.GroupLayout.PREFERRED_SIZE, 490, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jFundo, javax.swing.GroupLayout.PREFERRED_SIZE, 350, Short.MAX_VALUE)
+            .addComponent(jFundo, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -229,6 +238,8 @@ public class JFIdiomas extends javax.swing.JFrame {
 
     private void jbFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbFecharActionPerformed
         if (jbFechar.getText().equals("Fechar")) {
+            JFMenu janela = new JFMenu();
+            janela.setVisible(true);
             this.dispose();
         } else {
             jbSalvar.setText("Salvar");
@@ -277,19 +288,12 @@ public class JFIdiomas extends javax.swing.JFrame {
     }//GEN-LAST:event_jbSalvarActionPerformed
 
     private void jpEscuroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpEscuroMouseClicked
-        boolean modoAtivado = modoVisao.isDarkModeOn();
-        if (!modoAtivado) {
-            jFundo.setBackground(Color.decode("#283482"));
-            jpEscuro.setBackground(Color.decode("#283482"));
-            IDIOMAS.setForeground(Color.white);
-            ENTRADA.setForeground(Color.white);
-            ONOFF.setIcon(new ImageIcon(JFMenu.class.getResource("/img/on.png")));
+        modoVisao visao = new modoVisao();
+        boolean darkModeAtivo = visao.isDarkModeOn();
+        if (darkModeAtivo) {
+            modoClaro();
         } else {
-            jFundo.setBackground(Color.white);
-            jpEscuro.setBackground(Color.white);
-            IDIOMAS.setForeground(Color.black);
-            ENTRADA.setForeground(Color.black);
-            ONOFF.setIcon(new ImageIcon(JFMenu.class.getResource("/img/off.png")));
+            modoEscuro();
         }
         modoVisao.toggleVisao();
     }//GEN-LAST:event_jpEscuroMouseClicked
@@ -353,6 +357,36 @@ public class JFIdiomas extends javax.swing.JFrame {
         limparCampo();
         addRowToTable();
         i = new idioma();
+    }
+
+    public void verificar() {
+        if (isDarkModeOn()) {
+            modoEscuro();
+        } else {
+            modoClaro();
+        }
+    }
+
+    public void modoClaro() {
+        jFundo.setBackground(Color.white);
+        jpEscuro.setBackground(Color.white);
+        IDIOMAS.setForeground(Color.black);
+        ENTRADA.setForeground(Color.black);
+        ONOFF.setIcon(new ImageIcon(JFMenu.class.getResource("/img/off.png")));
+    }
+
+    public void modoEscuro() {
+        jFundo.setBackground(Color.decode("#283482"));
+        jpEscuro.setBackground(Color.decode("#283482"));
+        IDIOMAS.setForeground(Color.white);
+        ENTRADA.setForeground(Color.white);
+        ONOFF.setIcon(new ImageIcon(JFMenu.class.getResource("/img/on.png")));
+    }
+
+    public void close() {
+        JFMenu janela = new JFMenu();
+        janela.setVisible(true);
+        this.dispose();
     }
 
     public static void main(String args[]) {

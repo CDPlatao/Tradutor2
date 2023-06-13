@@ -1,10 +1,19 @@
 package view;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 public class JFPortugues extends javax.swing.JFrame {
 
     public JFPortugues() {
         setTitle("Libras");
         initComponents();
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                close();
+            }
+        });
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -43,6 +52,8 @@ public class JFPortugues extends javax.swing.JFrame {
         jlSaida = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(472, 740));
+        setMinimumSize(new java.awt.Dimension(472, 740));
         setResizable(false);
 
         jFundo.setBackground(new java.awt.Color(255, 255, 255));
@@ -366,21 +377,17 @@ public class JFPortugues extends javax.swing.JFrame {
         jpSaida.setLayout(jpSaidaLayout);
         jpSaidaLayout.setHorizontalGroup(
             jpSaidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-            .addGroup(jpSaidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jpSaidaLayout.createSequentialGroup()
-                    .addGap(254, 254, 254)
-                    .addComponent(jlSaida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGap(254, 254, 254)))
+            .addGroup(jpSaidaLayout.createSequentialGroup()
+                .addGap(154, 154, 154)
+                .addComponent(jlSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpSaidaLayout.setVerticalGroup(
             jpSaidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 110, Short.MAX_VALUE)
-            .addGroup(jpSaidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jpSaidaLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jlSaida, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
-                    .addContainerGap()))
+            .addGroup(jpSaidaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlSaida, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jFundoLayout = new javax.swing.GroupLayout(jFundo);
@@ -388,15 +395,12 @@ public class JFPortugues extends javax.swing.JFrame {
         jFundoLayout.setHorizontalGroup(
             jFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jFundoLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jpSaida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(jFundoLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
+                .addGap(25, 25, 25)
                 .addGroup(jFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jlTraducao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jpTeclado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(56, 56, 56))
+                    .addComponent(jpTeclado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jpSaida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         jFundoLayout.setVerticalGroup(
             jFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -405,9 +409,9 @@ public class JFPortugues extends javax.swing.JFrame {
                 .addComponent(jlTraducao, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jpTeclado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpSaida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(10, 10, 10))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -531,6 +535,12 @@ public class JFPortugues extends javax.swing.JFrame {
     private void jbLimpar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpar1ActionPerformed
         jlSaida.setText(" ");
     }//GEN-LAST:event_jbLimpar1ActionPerformed
+   
+    public void close() {
+        JFMenu janela = new JFMenu();
+        janela.setVisible(true);
+        this.dispose();
+    }
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {

@@ -14,4 +14,12 @@ public class modoVisao {
     public static void toggleVisao() {
         darkModeOn = !darkModeOn;
     }
+
+    public static boolean verVisao() {
+        if (darkModeOn) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
